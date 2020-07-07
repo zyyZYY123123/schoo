@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>どこでも映画館</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
+
+<link rel="stylesheet" th:href="@{/css/css_v2/style.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/css_v2/inview.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/css_v2/menu.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/css_v2/slide.css}" type="text/css">
+<script type="text/javasqript" th:src="@{/js/openclose.js}"></script>
+<script type="text/javasqript" th:src="@{/js/fixmenu_pagetop.js}"></script>
+
+<!--
+<link rel="stylesheet" href="css/style.css">
+<script src="js/openclose.js"></script>
+<script src="js/fixmenu_pagetop.js"></script>
+-->
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<!--[if lt IE 10]>
+<style>
+.slide1 {background: url(images/1.jpg) no-repeat center center;}
+.slide2,.slide3 {display: none;}
+.home #container,.home #main,.home #sub {overflow: auto;}
+</style>
+<![endif]-->
+</head>
+
+<!--body class="home"-->
+<body>
+
+<div id="container">
+
+<div id="bgimg-shopping" class="bgimg">背景イメージ</div>
+		
+<div id="main">
+		
+<section>
+
+<h2>HOME<span>おすすめ映画一覧</span></h2>
+
+<table>
+	<tr th:each="data : ${movieDataList}" th:object="${data}">
+	  <th>
+		<span class="contents-item">
+		  <a th:href="@{'/movie/' + *{movie_id}}">
+			<img th:src="*{image_url}" height="150" width="150">
+		  </a>
+		  <p th:text="*{title}"></p></span>
+	  </th>
+	</tr>
+  </table>
+
+</section>
+
+</div>
+<!--/#main-->
+
+<div id="sub">
+
+<h2 class="logo">Every Where Movie<span>どこでも映画館</span></h2>
+
+<!--PC用（801px以上端末）メニュー-->
+<nav id="menubar">
+<ul>
+	<li class="menu1 current"><a href="top">Home<span>おすすめ</span></a></li>
+	<li class="menu2"><a href="about.html">Now Showing<span>上映中</span></a></li>
+	<li class="menu3"><a href="list.html">Search<span>検索</span></a></li>
+	<li class="menu4"><a href="preference">Setting<span>設定</span></a></li>
+</ul>
+</nav>
+
+</div>
+<!--/#sub-->
+
+<!--小さな端末用（800px以下端末）環境でのみ表示させるブロック-->
+
+<div id="sh-sub">
+
+<h1 class="logo"><a href="index.html"><img src="images/logo.png" alt="SAMPLE SHOP"></a></h1>
+
+<!--小さな端末用（800px以下端末）メニュー-->
+<nav id="menubar-s">
+<ul>
+	<li class="menu1 current"><a href="top">Home<span>おすすめ</span></a></li>
+	<li class="menu2"><a href="about.html">Now Showing<span>上映中</span></a></li>
+	<li class="menu3"><a href="list.html">Search<span>検索</span></a></li>
+	<li class="menu4"><a href="preference">Setting<span>設定</span></a></li>
+</ul>
+</nav>
+
+</div>
+<!--/#sh-sub-->
+
+<footer>
+<small>Copyright&copy; <a href="index.html">SAMPLE SHOP</a> All Rights Reserved.</small>
+<span class="pr"><a href="http://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+</footer>
+
+</div>
+<!--/#container-->
+
+<!--ページの上部に戻る「↑」ボタン-->
+<p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
+
+<!--メニュー開閉ボタン-->
+<div id="menubar_hdr" class="close"></div>
+<!--メニューの開閉処理条件設定　800px以下-->
+<script>
+if (OCwindowWidth() <= 800) {
+	open_close("menubar_hdr", "menubar-s");
+}
+</script>
+
+</body>
+</html>
